@@ -1,4 +1,4 @@
-package com.booleansystems.codechallenge.dependencies
+package com.booleansystems.codechallenge.dependencies.rest
 
 import com.booleansystems.codechallenge.utils.Constants
 import okhttp3.Interceptor

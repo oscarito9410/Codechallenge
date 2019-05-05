@@ -9,7 +9,7 @@ import com.booleansystems.codechallenge.ui.home.mapper.toPresentationModel
 import com.booleansystems.codechallenge.utils.SingleLiveEvent
 import com.booleansystems.data.common.IBaseResultListener
 import com.booleansystems.domain.common.BaseResponse
-import com.booleansystems.usecase.SearchGalleryUseCase
+import com.booleansystems.usecase.search.SearchGalleryUseCase
 import com.booleansystems.domain.response.GalleryImage as DomainGalleryImage
 
 
@@ -40,11 +40,20 @@ class SearchGalleryViewModel(private val searchGalleryUseCase: SearchGalleryUseC
         mIsLoading.postValue(false)
     }
 
-    fun startSearchGallery(restart: Boolean, query: String) {
-        mIsLoading.postValue(true)
-        if (restart) mCurrentPage = 0 else mCurrentPage++
-        mRestartSearch.postValue(restart)
-        searchGalleryUseCase.invoke(mCurrentPage, query, this)
+    fun startSearchGallery(isConnectInternet: Boolean, restart: Boolean, query: String) {
+
+        when (isConnectInternet) {
+            true -> {
+                mIsLoading.postValue(true)
+                if (restart) mCurrentPage = 0 else mCurrentPage++
+                mRestartSearch.postValue(restart)
+                searchGalleryUseCase.invoke(mCurrentPage, query, this)
+            }
+            else -> mErrorEvent.postValue(R.string.error_no_internet_connection_found)
+
+        }
+
+
     }
 
     override fun onSuccess(response: BaseResponse<DomainGalleryImage>) {

@@ -1,7 +1,7 @@
-package com.booleansystems.usecase
+package com.booleansystems.usecase.search
 
-import com.booleansystems.data.SearchGalleryRepository
 import com.booleansystems.data.common.IBaseResultListener
+import com.booleansystems.data.search.SearchGalleryRepository
 import com.booleansystems.domain.common.BaseResponse
 import com.booleansystems.domain.response.GalleryImage
 

@@ -20,6 +20,7 @@ import com.booleansystems.codechallenge.ui.home.mapper.GalleryImage
 import com.booleansystems.codechallenge.ui.home.view.adapter.ItemClickListener
 import com.booleansystems.codechallenge.ui.home.view.adapter.SearchGalleryResultAdapter
 import com.booleansystems.codechallenge.ui.home.viewmodel.SearchGalleryViewModel
+import com.booleansystems.codechallenge.utils.extentions.isConnected
 import com.booleansystems.codechallenge.utils.widgets.recyclerview.PaginationScrollListener
 import com.booleansystems.codechallenge.utils.widgets.recyclerview.SpacesItemDecoration
 import com.booleansystems.codechallenge.utils.widgets.searchview.DebounceSearchViewObservable
@@ -84,7 +85,7 @@ class HomeActivity : BaseActivity(), Observer<MutableList<GalleryImage>>, ItemCl
 
             override fun loadMoreItems() {
                 if (mSearchView != null)
-                    mViewModel!!.startSearchGallery(false, mSearchView!!.query.toString())
+                    mViewModel!!.startSearchGallery(isConnected, false, mSearchView!!.query.toString())
             }
 
         })
@@ -119,12 +120,11 @@ class HomeActivity : BaseActivity(), Observer<MutableList<GalleryImage>>, ItemCl
         )
             .map { text -> text.toLowerCase() }
             .debounce(250, TimeUnit.MILLISECONDS)
-            .distinct()
             .filter { text -> text.isNotBlank() && text.length >= 3 }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ text ->
-                mViewModel!!.startSearchGallery(true, text)
+                mViewModel!!.startSearchGallery(isConnected, true, text)
             })
     }
 

@@ -1,18 +1,17 @@
 package com.booleansystems.codechallenge.di
 
-import com.booleansystems.codechallenge.dependencies.ImgurRestInterceptor
-import com.booleansystems.codechallenge.dependencies.ImgurRestEndpoints
+import com.booleansystems.codechallenge.dependencies.rest.ImgurRestEndpoints
+import com.booleansystems.codechallenge.dependencies.rest.ImgurRestInterceptor
 import com.booleansystems.codechallenge.ui.home.datasource.SearchGalleryDataSourceImpl
 import com.booleansystems.codechallenge.ui.home.viewmodel.SearchGalleryViewModel
 import com.booleansystems.codechallenge.utils.Constants
-import com.booleansystems.data.SearchGalleryRepository
-import com.booleansystems.usecase.SearchGalleryUseCase
+import com.booleansystems.data.search.SearchGalleryRepository
+import com.booleansystems.usecase.search.SearchGalleryUseCase
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
-import org.koin.experimental.builder.single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,4 +1,4 @@
-package com.booleansystems.data
+package com.booleansystems.data.search
 
 import com.booleansystems.data.common.IBaseResultListener
 

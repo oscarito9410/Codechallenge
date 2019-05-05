@@ -1,9 +1,9 @@
 package com.booleansystems.codechallenge.ui.home.datasource
 
-import com.booleansystems.codechallenge.dependencies.ImgurRestEndpoints
+import com.booleansystems.codechallenge.dependencies.rest.ImgurRestEndpoints
 import com.booleansystems.codechallenge.utils.Constants
-import com.booleansystems.data.SearchGalleryRepository
 import com.booleansystems.data.common.IBaseResultListener
+import com.booleansystems.data.search.SearchGalleryRepository
 import com.booleansystems.domain.common.BaseResponse
 import com.booleansystems.domain.response.GalleryImage
 import io.reactivex.android.schedulers.AndroidSchedulers

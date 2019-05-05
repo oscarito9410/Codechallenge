@@ -37,9 +37,9 @@ class SearchGalleryResultAdapter(
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(mListResults[position])
+        holder.setData(mContext, mListResults[position])
         holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClicked(mListResults[position],holder.itemView.ivGalleryItem)
+            mItemClickListener.onItemClicked(mListResults[position], holder.itemView.ivGalleryItem)
         }
     }
 
@@ -59,9 +59,9 @@ class SearchGalleryResultAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-        fun setData(item: GalleryImage) {
+        fun setData(context: Context, item: GalleryImage) {
             itemView.tvTitleGalleryItem.text = item.title!!
-            itemView.tvTotalPointsItem.text = item.points + " points"
+            itemView.tvTotalPointsItem.text = context.getString(R.string.text_total_points, item.points!!)
             if (item.images != null && item.images.firstOrNull() != null) {
 
                 val options = RequestOptions()

@@ -58,8 +58,8 @@
 
                     <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/pgAnimationLoadDetail"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
+                            android:layout_width="@dimen/width_lottie_detail"
+                            android:layout_height="@dimen/height_lottie_detail"
                             android:visibility="visible"
                             android:layout_gravity="center_horizontal"
                             app:lottie_autoPlay="true"
@@ -83,14 +83,143 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@android:drawable/ic_menu_share"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/biggest_separation"
+                    android:orientation="vertical">
+
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+
+                    <TextView
+                            android:id="@+id/tvTotalViewsDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:layout_height="wrap_content"
+                            tools:text="1000 views "/>
+
+                    <TextView
+                            android:id="@+id/tvDateUploadDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:layout_height="wrap_content"
+                            tools:text="20/12/19 upload at "/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginTop="@dimen/biggest_separation">
+                    <TextView
+                            android:id="@+id/tvTotalPointsDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_ups"
+                            android:drawableTint="@android:color/black"
+                            tools:text="100 points"
+                            android:textColor="@android:color/black"
+                            android:textAlignment="center"/>
+
+
+                    <TextView
+                            android:id="@+id/tvTotalDownsDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_arrow_downward"
+                            android:drawableTint="@android:color/black"
+                            tools:text="100 downs"
+                            android:textColor="@android:color/black"
+                            android:textAlignment="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginTop="@dimen/biggest_separation">
+                    <TextView
+                            android:id="@+id/tvTotalCommentsDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_comments"
+                            android:drawableTint="@android:color/black"
+                            tools:text="100 comments"
+                            android:textColor="@android:color/black"
+                            android:textAlignment="center"/>
+
+
+                    <TextView
+                            android:id="@+id/tvTotalFavoritesDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_favorite"
+                            android:drawableTint="@android:color/black"
+                            tools:text="100 downs"
+                            android:textColor="@android:color/black"
+                            android:textAlignment="center"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_marginTop="@dimen/large_separation">
+                    <TextView
+                            android:id="@+id/tvShareDetail"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_share"
+                            android:drawableTint="@android:color/black"
+                            tools:text="share"
+                            android:text="@string/text_share"
+                            android:onClick="shareAction"
+                            android:textColor="@android:color/black"
+                            android:textAlignment="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tvOpenInBrowserDetail"
+                    android:layout_width="match_parent" android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/big_separation_20"
+                    android:layout_marginTop="@dimen/big_separation_20"
+                    android:text="@string/text_open_in_browser"
+                    android:textColor="@color/colorPrimary"
+                    android:textAlignment="center"
+                    android:onClick="openBrowserAction"
+                    android:textSize="16sp"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

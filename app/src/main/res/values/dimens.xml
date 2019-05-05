@@ -4,4 +4,50 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="width_default_gallery">200dp</dimen>
     <dimen name="height_default_gallery">200dp</dimen>
+
+    <!-- Redesign -->
+    <dimen name="margin_top_fields_auth">80dp</dimen>
+    <dimen name="normal_separation">10dp</dimen>
+    <dimen name="small_separation">5dp</dimen>
+    <dimen name="small_separation_3">3dp</dimen>
+    <dimen name="hint_top_separation">2dp</dimen>
+    <dimen name="smaller_separation">2.5dp</dimen>
+    <dimen name="big_separation">15dp</dimen>
+    <dimen name="big_separation_20">20dp</dimen>
+    <dimen name="bigger_separation">25dp</dimen>
+    <dimen name="biggest_separation">30dp</dimen>
+    <dimen name="large_separation">40dp</dimen>
+    <dimen name="size_height_fields_auth">56dp</dimen>
+    <dimen name="btn_auth_height">60dp</dimen>
+    <dimen name="btn_normal_height">40dp</dimen>
+
+    <dimen name="dialog_width">271dp</dimen>
+
+    <!-- Text size -->
+    <dimen name="title_head_size">22sp</dimen>
+    <dimen name="title_head_small_size">20sp</dimen>
+    <dimen name="title_dialog_size">17sp</dimen>
+    <dimen name="text_field_auth_size">17sp</dimen>
+    <dimen name="text_field_size">15sp</dimen>
+    <dimen name="text_movements_list_size">20sp</dimen>
+    <dimen name="text_list_size">14sp</dimen>
+    <dimen name="text_list_size_16">16sp</dimen>
+    <dimen name="text_list_size_small">12sp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="text_dialog_size">15sp</dimen>
+    <dimen name="text_terms_size">14sp</dimen>
+    <dimen name="contact_normal_text_size">14sp</dimen>
+    <dimen name="contact_big_text_size">18sp</dimen>
+    <dimen name="foot_field_size">12sp</dimen>
+    <dimen name="error_field_size">11sp</dimen>
+    <dimen name="hint_text_field_size">10sp</dimen>
+    <dimen name="height_detail_button">30dp</dimen>
+    <dimen name="height_text_input_layout">36dp</dimen>
+    <dimen name="width_lottie_detail">200dp</dimen>
+    <dimen name="height_lottie_detail">200dp</dimen>
+    <dimen name="width_lottie_search">60dp</dimen>
+    <dimen name="height_lottie_search">60dp</dimen>
+    <dimen name="width_lottie_item">80dp</dimen>
+    <dimen name="height_lottie_item">80dp</dimen>
+
 </resources>

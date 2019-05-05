@@ -13,6 +13,8 @@ operez@na-at.com.mx
  */
 abstract class BaseActivity : AppCompatActivity() {
 
+    var mSnackbar: Snackbar? = null
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> {
@@ -24,13 +26,15 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun showSnackBar(view: View, @StringRes message: Int) {
-        val snackbar = Snackbar.make(
-            view, message,
-            Snackbar.LENGTH_LONG
-        )
-        snackbar.show()
+        if (mSnackbar == null) {
+            mSnackbar = Snackbar.make(
+                view, message,
+                Snackbar.LENGTH_LONG
+            )
+        }
+        if (!mSnackbar!!.isShownOrQueued)
+            mSnackbar!!.show()
     }
-
 
 
 }

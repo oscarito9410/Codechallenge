@@ -1,4 +1,4 @@
-package com.booleansystems.codechallenge.dependencies
+package com.booleansystems.codechallenge.dependencies.rest
 
 import com.booleansystems.domain.common.BaseResponse
 import com.booleansystems.domain.response.GalleryImage

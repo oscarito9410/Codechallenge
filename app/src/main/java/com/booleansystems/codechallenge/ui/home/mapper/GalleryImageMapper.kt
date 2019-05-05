@@ -49,9 +49,19 @@ data class GalleryImage(
     val title: String?, val description: String?,
     val ups: String?, val downs: String?,
     val points: String?,
+    val views: String?,
+    val date: String?,
+    val comments: String?,
+    val favorites: String?,
+    val url:String?,
     val images: List<SingleImage>?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -67,6 +77,11 @@ data class GalleryImage(
         parcel.writeString(ups)
         parcel.writeString(downs)
         parcel.writeString(points)
+        parcel.writeString(views)
+        parcel.writeString(date)
+        parcel.writeString(comments)
+        parcel.writeString(favorites)
+        parcel.writeString(url)
         parcel.writeTypedList(images)
     }
 
@@ -93,7 +108,9 @@ fun DomainImagen.toPresentationModel(): SingleImage = SingleImage(
 fun DomainGalleryImage.toPresentationModel(): GalleryImage =
     GalleryImage(
         "$title", "$description", "$ups",
-        "$downs", "$points",
+        "$downs", "$points", "$views", "$datetime",
+        "$comment_count", "$favorite_count",
+        "$link",
         if (images != null) images!!.map { it.toPresentationModel() }.toList() else emptyList()
     )
 
