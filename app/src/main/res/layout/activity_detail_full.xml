@@ -185,7 +185,7 @@
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                               android:orientation="horizontal"
-                              android:layout_marginTop="@dimen/large_separation">
+                              android:layout_marginTop="@dimen/bigger_separation">
                     <TextView
                             android:id="@+id/tvShareDetail"
                             android:layout_width="0dp"
