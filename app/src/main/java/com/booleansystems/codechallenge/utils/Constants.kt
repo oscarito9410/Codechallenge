@@ -11,6 +11,7 @@ class Constants {
             const val BASE_URL = "https://api.imgur.com/3/"
             const val CLIENT_ID_HEADER_VALUE = "Client-ID 126701cd8332f32"
             const val CLIENT_ID_HEADER_NAME = "Authorization"
+            const val DEFAULT_SORT_TYPE = "time"
         }
     }
 }

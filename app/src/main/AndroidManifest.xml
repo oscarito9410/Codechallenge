@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.booleansystems.codechallenge">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.booleansystems.codechallenge">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -13,10 +14,17 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.home.view.HomeActivity">
+        <activity
+                android:name=".ui.detail.DetailFullActivity"
+                android:label="@string/title_activity_detail_full"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+                android:name=".ui.home.view.HomeActivity"
+                android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

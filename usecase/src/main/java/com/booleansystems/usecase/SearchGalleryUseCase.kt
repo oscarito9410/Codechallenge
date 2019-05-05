@@ -11,6 +11,6 @@ Created by oscar on 04/05/19
 operez@na-at.com.mx
  */
 class SearchGalleryUseCase(val searchGalleryRepository: SearchGalleryRepository) {
-    operator fun invoke(page: Short, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) =
+    operator fun invoke(page: Int, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) =
         searchGalleryRepository.executeSearch(page, query, result)
 }

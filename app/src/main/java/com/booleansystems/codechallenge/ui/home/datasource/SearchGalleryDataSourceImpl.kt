@@ -1,6 +1,7 @@
 package com.booleansystems.codechallenge.ui.home.datasource
 
 import com.booleansystems.codechallenge.dependencies.ImgurRestEndpoints
+import com.booleansystems.codechallenge.utils.Constants
 import com.booleansystems.data.SearchGalleryRepository
 import com.booleansystems.data.common.IBaseResultListener
 import com.booleansystems.domain.common.BaseResponse
@@ -18,8 +19,9 @@ class SearchGalleryDataSourceImpl(val endpoints: ImgurRestEndpoints) : SearchGal
 
     var mDisaposable: Disposable? = null
 
-    override fun executeSearch(page: Short, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) {
-        mDisaposable = endpoints.search("time",page, query).observeOn(AndroidSchedulers.mainThread())
+    override fun executeSearch(page: Int, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) {
+        mDisaposable = endpoints.search(Constants.HttpConfig.DEFAULT_SORT_TYPE, page, query)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io()).subscribe({
                 result.onSuccess(it)
                 mDisaposable!!.dispose()

@@ -1,4 +1,4 @@
-package com.booleansystems.codechallenge.utils
+package com.booleansystems.codechallenge.utils.widgets.searchview
 
 import androidx.appcompat.widget.SearchView
 import io.reactivex.ObservableEmitter
@@ -8,7 +8,7 @@ import io.reactivex.ObservableOnSubscribe
  * Created by oscar on 04/05/19
  * operez@na-at.com.mx
  */
-class DebounceSearchViewObservale(private val mSearchview: SearchView) : ObservableOnSubscribe<String> {
+class DebounceSearchViewObservable(private val mSearchview: SearchView) : ObservableOnSubscribe<String> {
     @Throws(Exception::class)
     override fun subscribe(emitter: ObservableEmitter<String>) {
         mSearchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

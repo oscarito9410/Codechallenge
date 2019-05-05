@@ -12,13 +12,13 @@ operez@na-at.com.mx
  */
 class SearchGalleryRepository(val searchGalleryDataSource: SearchGalleryDataSource) {
 
-    fun executeSearch(page: Short, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) {
+    fun executeSearch(page: Int, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) {
         searchGalleryDataSource.executeSearch(page, query, result)
     }
 
     interface SearchGalleryDataSource {
         fun executeSearch(
-            page: Short,
+            page: Int,
             query: String,
             result: IBaseResultListener<BaseResponse<GalleryImage>>
         )

@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.booleansystems.codechallenge.R
 import com.booleansystems.codechallenge.ui.home.mapper.GalleryImage
-import com.bumptech.glide.Glide
+import com.booleansystems.codechallenge.utils.glide.GlideImageLoader
+import com.bumptech.glide.Priority
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_result_gallery.view.*
+
 
 /**
 
@@ -17,7 +20,8 @@ operez@na-at.com.mx
  */
 class SearchGalleryResultAdapter(
     val mContext: Context,
-    val mListResults: MutableList<GalleryImage>
+    val mListResults: MutableList<GalleryImage>,
+    val mItemClickListener: ItemClickListener
 ) : RecyclerView.Adapter<SearchGalleryResultAdapter.ViewHolder>() {
 
     var mInflater: LayoutInflater? = null
@@ -33,7 +37,10 @@ class SearchGalleryResultAdapter(
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(mContext, mListResults[position])
+        holder.setData(mListResults[position])
+        holder.itemView.setOnClickListener {
+            mItemClickListener.onItemClicked(mListResults[position],holder.itemView.ivGalleryItem)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -43,19 +50,35 @@ class SearchGalleryResultAdapter(
     fun notifyDataSetChanged(restart: Boolean, list: MutableList<GalleryImage>) {
         if (restart)
             mListResults.clear()
+
         mListResults.addAll(list)
         notifyDataSetChanged()
     }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setData(context: Context, item: GalleryImage) {
-            itemView.tv_title_place.text = item.title!!
-            if (item.images != null && item.images.firstOrNull() != null)
-                Glide.with(context)
-                    .load(item.images.firstOrNull()!!.link)
-                    .centerCrop().into(itemView.iv_place)
 
+
+        fun setData(item: GalleryImage) {
+            itemView.tvTitleGalleryItem.text = item.title!!
+            itemView.tvTotalPointsItem.text = item.points + " points"
+            if (item.images != null && item.images.firstOrNull() != null) {
+
+                val options = RequestOptions()
+                    .centerCrop()
+                    .priority(Priority.HIGH)
+
+                GlideImageLoader(
+                    itemView.ivGalleryItem,
+                    itemView.pgAnimationLoadItem,
+                    itemView.tvPercentageProgressItem
+                ).load(item.images.firstOrNull()!!.link, options)
+            }
         }
+
+
     }
 }
+
+
+

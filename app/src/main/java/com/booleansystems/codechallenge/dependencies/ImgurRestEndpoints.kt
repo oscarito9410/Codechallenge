@@ -14,6 +14,8 @@ operez@na-at.com.mx
  */
 interface ImgurRestEndpoints {
     @GET("gallery/search/{sort}/{page}")
-    fun search(@Path("sort") sort:String, @Path("page")
-    page: Short, @Query("q") query: String): Observable<BaseResponse<GalleryImage>>
+    fun search(
+        @Path("sort") sort: String, @Path("page")
+        page: Int, @Query("q") query: String
+    ): Observable<BaseResponse<GalleryImage>>
 }
