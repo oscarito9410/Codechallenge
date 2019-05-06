@@ -18,12 +18,14 @@ import com.booleansystems.domain.response.GalleryImage as DomainGalleryImage
 Created by oscar on 04/05/19
 operez@na-at.com.mx
  */
-class SearchGalleryViewModel(private val searchGalleryUseCase: SearchGalleryUseCase) : ViewModel(),
+open class SearchGalleryViewModel(private val searchGalleryUseCase: SearchGalleryUseCase) : ViewModel(),
     IBaseResultListener<BaseResponse<DomainGalleryImage>> {
 
     val mSearchResultList = MutableLiveData<MutableList<GalleryImage>>()
 
     var mCurrentPage: Int = 0
+
+    var mLastQuery: String = ""
 
     val mRestartSearch = MutableLiveData<Boolean>()
 
@@ -44,16 +46,42 @@ class SearchGalleryViewModel(private val searchGalleryUseCase: SearchGalleryUseC
 
         when (isConnectInternet) {
             true -> {
-                mIsLoading.postValue(true)
-                if (restart) mCurrentPage = 0 else mCurrentPage++
-                mRestartSearch.postValue(restart)
-                searchGalleryUseCase.invoke(mCurrentPage, query, this)
+                //When query is not empty
+                if (!query.isEmpty())
+                    validateSearch(restart, query)
+                //When user clean searchview text but last query keeps in local variable
+                else if (query.isEmpty() && !mLastQuery.isEmpty() && !restart)
+                    validateSearch(restart, mLastQuery)
+                else
+                    sendEventEmptyQuery()
             }
-            else -> mErrorEvent.postValue(R.string.error_no_internet_connection_found)
-
+            else -> sendEventNotInternetAvailable()
         }
+    }
 
 
+    open fun validateSearch(restart: Boolean, query: String) {
+        mIsLoading.postValue(true)
+        increasePage(restart)
+        mRestartSearch.postValue(restart)
+        mLastQuery = query
+        searchGalleryUseCase.invoke(mCurrentPage, query, this)
+    }
+
+    open fun increasePage(needsRestart: Boolean) {
+        if (needsRestart) mCurrentPage = 0 else mCurrentPage++
+    }
+
+    open fun dicreasePage() {
+        if (mCurrentPage > 0) mCurrentPage--
+    }
+
+    open fun sendEventEmptyQuery() {
+        mErrorEvent.postValue(R.string.error_empty_query)
+    }
+
+    open fun sendEventNotInternetAvailable() {
+        mErrorEvent.postValue(R.string.error_no_internet_connection_found)
     }
 
     override fun onSuccess(response: BaseResponse<DomainGalleryImage>) {
@@ -61,13 +89,11 @@ class SearchGalleryViewModel(private val searchGalleryUseCase: SearchGalleryUseC
             filterListItems(response.data)
             mIsLoading.postValue(false)
         } else {
-            if (mCurrentPage > 0) mCurrentPage--
+            dicreasePage()
             mErrorEvent.postValue(R.string.error_no_data_found)
             mIsLoading.postValue(false)
-
             if (mRestartSearch.value!!)
                 mNotItemsFoundNewSearch.postValue(true)
-
         }
     }
 

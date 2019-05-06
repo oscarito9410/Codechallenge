@@ -1,7 +1,6 @@
 package com.booleansystems.data.search
 
 import com.booleansystems.data.common.IBaseResultListener
-
 import com.booleansystems.domain.common.BaseResponse
 import com.booleansystems.domain.response.GalleryImage
 
@@ -10,10 +9,10 @@ import com.booleansystems.domain.response.GalleryImage
 Created by oscar on 27/04/19
 operez@na-at.com.mx
  */
-class SearchGalleryRepository(val searchGalleryDataSource: SearchGalleryDataSource) {
+open class SearchGalleryRepository(val searchGalleryDataSource: SearchGalleryDataSource) {
 
     fun executeSearch(page: Int, query: String, result: IBaseResultListener<BaseResponse<GalleryImage>>) {
-        searchGalleryDataSource.executeSearch(page, query, result)
+            searchGalleryDataSource.executeSearch(page, query, result)
     }
 
     interface SearchGalleryDataSource {

@@ -6,6 +6,6 @@ import com.booleansystems.domain.common.BaseResponse
 Created by oscar on 03/05/19
 Notify is response is success or not */
 interface IBaseResultListener<T : BaseResponse<*>> {
-    fun onSuccess(response: T);
-    fun onError(error: Throwable)
+    open fun onSuccess(response: T);
+    open fun onError(error: Throwable)
 }

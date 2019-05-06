@@ -21,7 +21,8 @@ import com.booleansystems.codechallenge.ui.home.view.adapter.ItemClickListener
 import com.booleansystems.codechallenge.ui.home.view.adapter.SearchGalleryResultAdapter
 import com.booleansystems.codechallenge.ui.home.viewmodel.SearchGalleryViewModel
 import com.booleansystems.codechallenge.utils.extentions.isConnected
-import com.booleansystems.codechallenge.utils.widgets.recyclerview.PaginationScrollListener
+import com.booleansystems.codechallenge.utils.widgets.recyclerview.InfiniteScrollProvider
+import com.booleansystems.codechallenge.utils.widgets.recyclerview.InfiniteScrollProvider.OnLoadMoreListener
 import com.booleansystems.codechallenge.utils.widgets.recyclerview.SpacesItemDecoration
 import com.booleansystems.codechallenge.utils.widgets.searchview.DebounceSearchViewObservable
 import io.reactivex.Observable
@@ -74,21 +75,15 @@ class HomeActivity : BaseActivity(), Observer<MutableList<GalleryImage>>, ItemCl
     }
 
     fun addScrollListener(manager: StaggeredGridLayoutManager) {
-        rvSearchResultsHome.addOnScrollListener(object : PaginationScrollListener(manager) {
-            override fun isLastPage(): Boolean {
-                return false
-            }
-
-            override fun isLoading(): Boolean {
-                return mViewModel!!.mIsLoading.value!!
-            }
-
-            override fun loadMoreItems() {
+        val infiniteScrollProvider = InfiniteScrollProvider()
+        infiniteScrollProvider.attach(rvSearchResultsHome,object :OnLoadMoreListener{
+            override fun onLoadMore() {
                 if (mSearchView != null)
                     mViewModel!!.startSearchGallery(isConnected, false, mSearchView!!.query.toString())
-            }
 
+            }
         })
+
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {

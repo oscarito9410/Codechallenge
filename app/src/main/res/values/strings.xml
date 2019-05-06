@@ -36,5 +36,6 @@
     <string name="error_no_internet_connection_found">No internet connection found. Please verify that your internet
         connection is available
     </string>
+    <string name="error_empty_query">Please, enter a valid query text</string>
 
 </resources>

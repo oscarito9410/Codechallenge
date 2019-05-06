@@ -19,7 +19,6 @@ abstract class PaginationScrollListener
  */
     (var layoutManager: StaggeredGridLayoutManager) : RecyclerView.OnScrollListener() {
 
-    abstract fun isLastPage(): Boolean
 
     abstract fun isLoading(): Boolean
 
@@ -41,7 +40,7 @@ abstract class PaginationScrollListener
         }
 
 
-        if (!isLoading() && !isLastPage()) {
+        if (!isLoading()) {
             if (visibleItemCount + pastVisibleItems >= totalItemCount) {
                 loadMoreItems()
             }

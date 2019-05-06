@@ -65,10 +65,12 @@ dependencies {
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation 'com.airbnb.android:lottie:2.8.0'
 
-
     implementation project(':usecase')
     implementation project(':data')
     implementation project(':domain')
 
+
+    testImplementation 'org.robolectric:robolectric:3.0'
+    testImplementation 'org.mockito:mockito-core:2.13.0'
 
 }
